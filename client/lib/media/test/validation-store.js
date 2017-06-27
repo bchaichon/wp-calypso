@@ -10,11 +10,12 @@ import sinon from 'sinon';
  * Internal dependencies
  */
 import useMockery from 'test/helpers/use-mockery';
+import { site } from './fixtures/site';
 
 /**
  * Module variables
  */
-var DUMMY_SITE_ID = 1,
+const DUMMY_SITE_ID = 1,
 	DUMMY_MEDIA_OBJECT = { ID: 100, title: 'Image', extension: 'exe' };
 
 describe( 'MediaValidationStore', function() {
@@ -32,18 +33,6 @@ describe( 'MediaValidationStore', function() {
 
 		// Mockery
 		mockery.enable( { warnOnReplace: false, warnOnUnregistered: false } );
-		mockery.registerMock( 'lib/sites-list', function() {
-			return {
-				getSite: function() {
-					return {
-						options: {
-							allowed_file_types: [ 'gif', 'pdf', 'avi' ],
-							max_upload_size: 1024
-						}
-					};
-				}
-			};
-		} );
 
 		// Load store
 		MediaValidationStore = require( '../validation-store' );
@@ -63,7 +52,8 @@ describe( 'MediaValidationStore', function() {
 			action: assign( {
 				type: 'CREATE_MEDIA_ITEM',
 				siteId: DUMMY_SITE_ID,
-				data: DUMMY_MEDIA_OBJECT
+				data: DUMMY_MEDIA_OBJECT,
+				site
 			}, action )
 		} );
 	}
@@ -97,13 +87,13 @@ describe( 'MediaValidationStore', function() {
 		} );
 
 		it( 'should have no effect for a valid file', function() {
-			validateItem( DUMMY_SITE_ID, Object.assign( {}, DUMMY_MEDIA_OBJECT, { extension: 'gif' } ) );
+			validateItem( site, Object.assign( {}, DUMMY_MEDIA_OBJECT, { extension: 'gif' } ) );
 
 			expect( MediaValidationStore._errors ).to.eql( {} );
 		} );
 
 		it( 'should set an error array for an invalid file', function() {
-			validateItem( DUMMY_SITE_ID, DUMMY_MEDIA_OBJECT );
+			validateItem( site, DUMMY_MEDIA_OBJECT );
 
 			expect( MediaValidationStore._errors ).to.eql( {
 				[ DUMMY_SITE_ID ]: {
@@ -113,7 +103,7 @@ describe( 'MediaValidationStore', function() {
 		} );
 
 		it( 'should set an error array for a file exceeding acceptable size', function() {
-			validateItem( DUMMY_SITE_ID, Object.assign( {}, DUMMY_MEDIA_OBJECT, { size: 2048, extension: 'gif' } ) );
+			validateItem( site, Object.assign( {}, DUMMY_MEDIA_OBJECT, { size: 2048, extension: 'gif' } ) );
 
 			expect( MediaValidationStore._errors ).to.eql( {
 				[ DUMMY_SITE_ID ]: {
@@ -123,7 +113,7 @@ describe( 'MediaValidationStore', function() {
 		} );
 
 		it( 'should accumulate multiple validation errors', function() {
-			validateItem( DUMMY_SITE_ID, Object.assign( {}, DUMMY_MEDIA_OBJECT, { size: 2048 } ) );
+			validateItem( site, Object.assign( {}, DUMMY_MEDIA_OBJECT, { size: 2048 } ) );
 
 			expect( MediaValidationStore._errors ).to.eql( {
 				[ DUMMY_SITE_ID ]: {
@@ -308,7 +298,8 @@ describe( 'MediaValidationStore', function() {
 			var action = {
 				type: 'CREATE_MEDIA_ITEM',
 				siteId: DUMMY_SITE_ID,
-				data: DUMMY_MEDIA_OBJECT
+				data: DUMMY_MEDIA_OBJECT,
+				site
 			};
 
 			handler( { action } );
@@ -322,14 +313,16 @@ describe( 'MediaValidationStore', function() {
 			var action = {
 				type: 'CREATE_MEDIA_ITEM',
 				siteId: DUMMY_SITE_ID,
-				data: DUMMY_MEDIA_OBJECT
+				data: DUMMY_MEDIA_OBJECT,
+				site
 			};
 
 			handler( {
 				action: {
 					type: 'CREATE_MEDIA_ITEM',
 					siteId: DUMMY_SITE_ID,
-					data: assign( {}, DUMMY_MEDIA_OBJECT, { ID: 101 } )
+					data: assign( {}, DUMMY_MEDIA_OBJECT, { ID: 101 } ),
+					site
 				}
 			} );
 
