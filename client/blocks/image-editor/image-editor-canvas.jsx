@@ -62,11 +62,14 @@ class ImageEditorCanvas extends Component {
 		isImageLoaded: false
 	};
 
+	onWindowResize = () => {
+		this.requestAnimationFrameId = window.requestAnimationFrame( this.updateCanvasPosition );
+	};
+
 	constructor( props ) {
 		super( props );
 
 		this.onLoadComplete = this.onLoadComplete.bind( this );
-		this.onWindowResize = this.onWindowResize.bind( this );
 		this.updateCanvasPosition = this.updateCanvasPosition.bind( this );
 		this.requestAnimationFrameId = null;
 		this.isVisible = false;
@@ -131,10 +134,6 @@ class ImageEditorCanvas extends Component {
 		}
 
 		this.props.setImageEditorImageHasLoaded( this.image.width, this.image.height );
-	}
-
-	onWindowResize() {
-		this.requestAnimationFrameId = window.requestAnimationFrame( this.updateCanvasPosition );
 	}
 
 	componentWillUnmount() {
