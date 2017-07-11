@@ -11,7 +11,7 @@ import { stub } from 'sinon';
  */
 import useMockery from 'test/helpers/use-mockery';
 
-describe( 'SubmitStepButton', () => {
+describe.skip( 'SubmitStepButton', () => {
 	let SubmitStepButton;
 	const submitSignupStep = stub();
 

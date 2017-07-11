@@ -17,7 +17,7 @@ import useMockery from 'test/helpers/use-mockery';
 var DUMMY_SITE_ID = 1,
 	DUMMY_MEDIA_OBJECT = { ID: 100, title: 'Image', extension: 'exe' };
 
-describe( 'MediaValidationStore', function() {
+describe.skip( 'MediaValidationStore', function() {
 	let sandbox, MediaValidationStore, handler, Dispatcher, MediaValidationErrors;
 
 	useMockery();
@@ -89,7 +89,7 @@ describe( 'MediaValidationStore', function() {
 		} );
 	}
 
-	describe( '#validateItem()', function() {
+	describe.skip( '#validateItem()', function() {
 		var validateItem;
 
 		before( function() {
@@ -136,7 +136,7 @@ describe( 'MediaValidationStore', function() {
 		} );
 	} );
 
-	describe( '#clearValidationErrors()', function() {
+	describe.skip( '#clearValidationErrors()', function() {
 		var clearValidationErrors;
 
 		before( function() {
@@ -162,7 +162,7 @@ describe( 'MediaValidationStore', function() {
 		} );
 	} );
 
-	describe( '#clearValidationErrorsByType', function() {
+	describe.skip( '#clearValidationErrorsByType', function() {
 		var clearValidationErrorsByType;
 
 		before( function() {
@@ -185,7 +185,7 @@ describe( 'MediaValidationStore', function() {
 		} );
 	} );
 
-	describe( '#getAllErrors()', function() {
+	describe.skip( '#getAllErrors()', function() {
 		it( 'should return an empty object when no errors exist', function() {
 			var errors = MediaValidationStore.getAllErrors( DUMMY_SITE_ID );
 
@@ -204,7 +204,7 @@ describe( 'MediaValidationStore', function() {
 		} );
 	} );
 
-	describe( '#getErrors()', function() {
+	describe.skip( '#getErrors()', function() {
 		it( 'should return an empty array when no errors exist', function() {
 			var errors = MediaValidationStore.getErrors( DUMMY_SITE_ID, DUMMY_MEDIA_OBJECT.ID );
 
@@ -222,7 +222,7 @@ describe( 'MediaValidationStore', function() {
 		} );
 	} );
 
-	describe( '.dispatchToken', function() {
+	describe.skip( '.dispatchToken', function() {
 		it( 'should expose its dispatcher ID', function() {
 			expect( MediaValidationStore.dispatchToken ).to.not.be.undefined;
 		} );

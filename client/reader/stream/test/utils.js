@@ -1,28 +1,16 @@
+jest.mock( 'lib/user/utils', () => ( {} ) );
+
 /**
  * External dependencies
  */
 import { expect, assert } from 'chai';
 import moment from 'moment';
-import mockery from 'mockery';
-let utils, sameDay, sameSite, combine, combineCards, injectRecommendations;
 
-/**
- * Internal dependencies
- */
-import useMockery from 'test/helpers/use-mockery';
+import {
+	sameDay, sameSite, combine, combineCards, injectRecommendations
+} from '../utils';
 
 describe( 'reader stream', () => {
-	useMockery();
-	before( () => {
-		mockery.registerMock( 'lib/user/utils', {} );
-		utils = require( '../utils' );
-		sameDay = utils.sameDay;
-		sameSite = utils.sameSite;
-		combine = utils.combine;
-		combineCards = utils.combineCards;
-		injectRecommendations = utils.injectRecommendations;
-	} );
-
 	const postKey1 = { feedId: 'feed1', postId: 'postId1' };
 	const postKey2 = { feedId: 'feed1', postId: 'postId2' };
 	const postIds34 = [ 'postId3', 'postId4' ];

@@ -11,7 +11,7 @@ import isEmpty from 'lodash/isEmpty';
 import useFilesystemMocks from 'test/helpers/use-filesystem-mocks';
 import useMockery from 'test/helpers/use-mockery';
 
-describe( 'index', () => {
+describe.skip( 'index', () => {
 	let flows, steps;
 
 	useFilesystemMocks( __dirname );
