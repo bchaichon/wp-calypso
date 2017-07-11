@@ -1,4 +1,8 @@
 /**
+ * @jest-environment jsdom
+ */
+
+/**
  * External dependencies
  */
 import React from 'react';
@@ -10,7 +14,6 @@ import { stub } from 'sinon';
 /**
  * Internal dependencies
  */
-import useFakeDom from 'test/helpers/use-fake-dom';
 import useMockery from 'test/helpers/use-mockery';
 
 describe( 'ReaderSidebar', () => {
@@ -29,8 +32,6 @@ describe( 'ReaderSidebar', () => {
 	const readerSidebarDefaultProps = {
 		path: '/',
 	};
-
-	useFakeDom();
 
 	useMockery( mockery => {
 		mockery.registerMock( 'component-closest', stub() );

@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 var assert = require( 'assert' ),
 	ReactDom = require( 'react-dom' ),
 	React = require( 'react' ),
@@ -9,7 +13,6 @@ describe( 'index', function() {
 		{ value: 1, label: 'One' },
 		{ value: 2, label: 'Two' }
 	];
-	require( 'test/helpers/use-fake-dom' )();
 
 	afterEach( function() {
 		ReactDom.unmountComponentAtNode( document.body );

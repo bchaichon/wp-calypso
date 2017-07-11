@@ -1,4 +1,8 @@
 /**
+ * @jest-environment jsdom
+ */
+
+/**
  * External dependencies
  */
 var assert = require( 'assert' ),
@@ -23,7 +27,6 @@ var Wrapper = React.createClass( {
 } );
 
 describe( 'index', function() {
-	require( 'test/helpers/use-fake-dom' )();
 	describe( 'rendering', function() {
 		it( 'should have is-compact class', function() {
 			var toggle = TestUtils.renderIntoDocument( <CompactFormToggle /> ),
@@ -36,7 +39,6 @@ describe( 'index', function() {
 } );
 
 describe( 'FormToggle', function() {
-	require( 'test/helpers/use-fake-dom' )();
 	afterEach( function() {
 		ReactDom.unmountComponentAtNode( document.body );
 	} );

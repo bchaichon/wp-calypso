@@ -1,4 +1,8 @@
 /**
+ * @jest-environment jsdom
+ */
+
+/**
  * External dependencies
  */
 var expect = require( 'chai' ).expect,
@@ -13,7 +17,6 @@ var FormRange = require( '../' );
 var Gridicon = require( 'gridicons' );
 
 describe( 'index', function() {
-	require( 'test/helpers/use-fake-dom' )();
 	afterEach( function() {
 		ReactDom.unmountComponentAtNode( document.body );
 	} );

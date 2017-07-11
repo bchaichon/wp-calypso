@@ -1,15 +1,17 @@
 /**
+ * @jest-environment jsdom
+ */
+
+/**
  * External dependencies
  */
 var expect = require( 'chai' ).expect,
-	useFakeDom = require( 'test/helpers/use-fake-dom' ).withContainer,
 	getContainer = require( 'test/helpers/use-fake-dom' ).getContainer,
 	useMockery = require( 'test/helpers/use-mockery' );
 
 describe( 'FormPhoneInput', function() {
 	var React, ReactDom, ReactClass, TestUtils, i18n, mockCountriesList, mockCountriesListEmpty, FormPhoneInput, countries, container;
 
-	useFakeDom();
 	useMockery();
 
 	before( function() {
