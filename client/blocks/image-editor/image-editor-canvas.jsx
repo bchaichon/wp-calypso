@@ -62,16 +62,19 @@ class ImageEditorCanvas extends Component {
 		isImageLoaded: false
 	};
 
+	// throttle the frame rate of window.resize() to circa 30fps
+	frameRateInterval = 1000 / 30;
+	requestAnimationFrameId = null;
+	lastTimestamp = null;
+
 	onWindowResize = () => {
 		this.requestAnimationFrameId = window.requestAnimationFrame( this.updateCanvasPosition );
 	};
 
 	constructor( props ) {
 		super( props );
-
 		this.onLoadComplete = this.onLoadComplete.bind( this );
 		this.updateCanvasPosition = this.updateCanvasPosition.bind( this );
-		this.requestAnimationFrameId = null;
 		this.isVisible = false;
 	}
 
@@ -130,6 +133,7 @@ class ImageEditorCanvas extends Component {
 		this.updateCanvasPosition();
 
 		if ( typeof window !== 'undefined' ) {
+			this.lastTimestamp = window.performance.now();
 			window.addEventListener( 'resize', this.onWindowResize );
 		}
 
@@ -223,7 +227,18 @@ class ImageEditorCanvas extends Component {
 		context.restore();
 	}
 
-	updateCanvasPosition() {
+	updateCanvasPosition( timestamp ) {
+		const now = timestamp,
+			elapsedTime = now - this.lastTimestamp;
+
+		if ( elapsedTime < this.frameRateInterval ) {
+			return;
+		}
+
+		// if enough time has passed to call the next frame
+		// reset lastTimeStamp minus 1 frame in ms ( to adjust for frame rates other than 60fps )
+		this.lastTimestamp = now - ( elapsedTime % this.frameRateInterval );
+
 		const {
 			leftRatio,
 			topRatio,
@@ -235,10 +250,10 @@ class ImageEditorCanvas extends Component {
 			canvasX = -50 * widthRatio - 100 * leftRatio,
 			canvasY = -50 * heightRatio - 100 * topRatio;
 
-		const canvasOffsetTop = canvas.offsetTop;
-		const canvasOffsetLeft = canvas.offsetLeft;
-		const canvasOffsetWidth = canvas.offsetWidth;
-		const canvasOffsetHeight = canvas.offsetHeight;
+		const canvasOffsetTop = canvas.offsetTop,
+			canvasOffsetLeft = canvas.offsetLeft,
+			canvasOffsetWidth = canvas.offsetWidth,
+			canvasOffsetHeight = canvas.offsetHeight;
 
 		this.props.setImageEditorCropBounds(
 			canvasOffsetTop - canvasOffsetHeight * -canvasY / 100,
