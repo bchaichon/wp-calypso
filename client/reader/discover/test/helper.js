@@ -15,7 +15,7 @@ import { get, omit } from 'lodash';
 import useMockery from 'test/helpers/use-mockery';
 import * as fixtures from './fixtures';
 
-describe( 'helper', () => {
+describe.skip( 'helper', () => {
 	const { discoverPost } = fixtures;
 	let helper;
 	useMockery( mockery => {

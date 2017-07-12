@@ -9,7 +9,7 @@ var expect = require( 'chai' ).expect,
 	getContainer = require( 'test/helpers/use-fake-dom' ).getContainer,
 	useMockery = require( 'test/helpers/use-mockery' );
 
-describe( 'FormPhoneInput', function() {
+describe.skip( 'FormPhoneInput', function() {
 	var React, ReactDom, ReactClass, TestUtils, i18n, mockCountriesList, mockCountriesListEmpty, FormPhoneInput, countries, container;
 
 	useMockery();
