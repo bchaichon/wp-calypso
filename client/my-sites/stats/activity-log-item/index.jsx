@@ -11,6 +11,7 @@ import { localize } from 'i18n-calypso';
  * Internal dependencies
  */
 import ActivityIcon from './activity-icon';
+import ActivityTitle from './activity-title';
 import EllipsisMenu from 'components/ellipsis-menu';
 import FoldableCard from 'components/foldable-card';
 import Gravatar from 'components/gravatar';
@@ -204,22 +205,6 @@ class ActivityLogItem extends Component {
 		);
 	}
 
-	renderContent() {
-		const { log } = this.props;
-		const {
-			name,
-		} = log;
-
-		const subTitle = null;
-
-		return (
-			<div className="activity-log-item__content">
-				<div className="activity-log-item__content-title">{ name }</div>
-				{ subTitle && <div className="activity-log-item__content-sub-title">{ subTitle }</div> }
-			</div>
-		);
-	}
-
 	// FIXME: Just for demonstration purposes
 	renderDescription() {
 		const {
@@ -249,10 +234,19 @@ class ActivityLogItem extends Component {
 	}
 
 	renderHeader() {
+		const {
+			group,
+			name,
+			object = {},
+		} = this.props.log;
 		return (
 			<div className="activity-log-item__card-header">
 				{ this.renderActor() }
-				{ this.renderContent() }
+				<ActivityTitle
+					group={ group }
+					name={ name }
+					object={ object }
+				/>
 			</div>
 		);
 	}
