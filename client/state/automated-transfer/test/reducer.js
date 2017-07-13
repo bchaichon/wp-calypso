@@ -20,11 +20,11 @@ describe( 'state', () => {
 				const update = { type: ELIGIBILITY_UPDATE };
 
 				it( 'should set inquiring status when first polling eligibility', () => {
-					expect( status( null, update ) ).to.equal( transferStates.INQUIRING )
+					expect( status( null, update ) ).to.equal( transferStates.INQUIRING );
 				} );
 
 				it( 'should not overwrite the status when a valid state already exists', () => {
-					expect( status( transferStates.START, update ) ).to.equal( transferStates.START )
+					expect( status( transferStates.START, update ) ).to.equal( transferStates.START );
 				} );
 			} );
 		} );

@@ -13,7 +13,7 @@ describe( 'SEO', () => {
 			it( 'should produce empty formats', () => {
 				expect(
 					nativeToRaw( [] )
-				).to.eql( [] )
+				).to.eql( [] );
 			} );
 
 			it( 'should produce plain-text strings', () => {
@@ -23,7 +23,7 @@ describe( 'SEO', () => {
 						{ type: 'string', value: ' a ' },
 						{ type: 'string', value: 'string' },
 					] )
-				).to.eql( [ { type: 'string', value: 'just a string' } ] )
+				).to.eql( [ { type: 'string', value: 'just a string' } ] );
 			} );
 
 			it( 'should convert token formats', () => {
@@ -37,7 +37,7 @@ describe( 'SEO', () => {
 					{ type: 'token', value: 'site_name' },
 					{ type: 'string', value: ' | ' },
 					{ type: 'token', value: 'post_title' },
-				] )
+				] );
 			} );
 		} );
 
@@ -45,13 +45,13 @@ describe( 'SEO', () => {
 			it( 'should handle empty strings', () => {
 				expect(
 					rawToNative( [] )
-				).to.eql( [] )
+				).to.eql( [] );
 			} );
 
 			it( 'should handle plain strings', () => {
 				expect(
 					rawToNative( [ { type: 'string', value: 'just a string' } ] )
-				).to.eql( [ { type: 'string', value: 'just a string' } ] )
+				).to.eql( [ { type: 'string', value: 'just a string' } ] );
 			} );
 
 			it( 'should convert token formats', () => {
@@ -65,7 +65,7 @@ describe( 'SEO', () => {
 					{ type: 'siteName' },
 					{ type: 'string', value: ' | ' },
 					{ type: 'postTitle' },
-				] )
+				] );
 			} );
 		} );
 
@@ -73,7 +73,7 @@ describe( 'SEO', () => {
 			it( 'should produce empty formats', () => {
 				expect(
 					fromApi( {} )
-				).to.eql( {} )
+				).to.eql( {} );
 			} );
 
 			it( 'should remap keys and values', () => {
@@ -99,7 +99,7 @@ describe( 'SEO', () => {
 						{ type: 'string', value: ' | ' },
 						{ type: 'siteName' },
 					],
-				} )
+				} );
 			} );
 		} );
 
@@ -107,7 +107,7 @@ describe( 'SEO', () => {
 			it( 'should produce empty formats', () => {
 				expect(
 					toApi( {} )
-				).to.eql( {} )
+				).to.eql( {} );
 			} );
 
 			it( 'should remap keys and values', () => {
@@ -133,7 +133,7 @@ describe( 'SEO', () => {
 						{ type: 'string', value: ' | ' },
 						{ type: 'token', value: 'site_name' },
 					],
-				} )
+				} );
 			} );
 		} );
 	} );
