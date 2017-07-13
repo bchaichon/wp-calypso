@@ -3,7 +3,7 @@
   "version": "0.17.0",
   "dependencies": {
     "@types/node": {
-      "version": "6.0.80",
+      "version": "6.0.82",
       "dev": true
     },
     "5to6-codemod": {
@@ -2113,7 +2113,7 @@
       "dev": true
     },
     "flow-parser": {
-      "version": "0.49.1",
+      "version": "0.50.0",
       "dev": true
     },
     "flux": {
@@ -3522,6 +3522,10 @@
           "dev": true
         }
       }
+    },
+    "jest-junit-reporter": {
+      "version": "1.1.0",
+      "dev": true
     },
     "jest-matcher-utils": {
       "version": "20.0.3",
